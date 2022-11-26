@@ -8,6 +8,7 @@ const SidebarItems = (props) => {
     <>
       <NavLink
         to={`${props.url}`}
+        end
         className={({ isActive }) =>
           isActive
             ? "transition-all hover:bg-white/5 py-3 hover:font-bold hover:translate-x-2 hover:text-th-cream text-th-cream font-bold"
