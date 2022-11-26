@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    @apply bg-th-dark text-th-white;
+  }
+}
+
+@layer components {
+  .main {
+    @apply md:ml-[330px] my-[80px] md:my-[50px] md:mr-[30px] mx-[30px];
+  }
+}
