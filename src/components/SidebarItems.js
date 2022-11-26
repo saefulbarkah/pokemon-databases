@@ -11,8 +11,8 @@ const SidebarItems = (props) => {
         end
         className={({ isActive }) =>
           isActive
-            ? "transition-all hover:bg-white/5 py-3 hover:font-bold hover:translate-x-2 hover:text-th-cream text-th-cream font-bold"
-            : "transition-all hover:bg-white/5 py-3 hover:font-bold hover:translate-x-2 hover:text-th-cream"
+            ? "transition-all hover:bg-white/5 py-3 hover:font-bold hover:translate-x-2 hover:text-th-cream text-th-cream font-bold capitalize"
+            : "transition-all hover:bg-white/5 py-3 hover:font-bold hover:translate-x-2 hover:text-th-cream capitalize"
         }
         onClick={() => handleSidebar()}
       >
