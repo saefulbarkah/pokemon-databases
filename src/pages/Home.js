@@ -1,5 +1,4 @@
 import React from "react";
-import BgDecoration from "../components/BgDecoration";
 import TitlePage from "../components/TitlePage";
 
 function Home() {

@@ -7,13 +7,19 @@ import TitlePage from "../components/TitlePage";
 
 function Pokemon() {
   const [pokemon, setPokemon] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // fetch api
     const getPokemon = async () => {
-      const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
-      const data = await response.json();
-      setPokemon(data.results);
+      try {
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+        const data = await response.json();
+        setPokemon(data.results);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getPokemon();
   }, []);
@@ -36,7 +42,7 @@ function Pokemon() {
       </PageSubTitle>
 
       {/* card */}
-      <CardList items={pokemon} />
+      <CardList items={pokemon} loading={isLoading} />
     </section>
   );
 }
