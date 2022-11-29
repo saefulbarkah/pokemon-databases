@@ -2,7 +2,7 @@ import React from "react";
 
 export const SidebarTitle = () => {
   return (
-    <div className="pb-5 flex flex-col items-center">
+    <div className="pb-5 flex flex-col items-center text-center">
       <img
         src="/assets/logo.webp"
         alt=""
