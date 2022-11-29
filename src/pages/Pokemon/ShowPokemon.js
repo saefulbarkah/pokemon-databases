@@ -6,6 +6,8 @@ import { Disclosure } from "@headlessui/react";
 import Paragraph from "../../components/Paragraph";
 import Border from "../../components/Border";
 import TitlePage from "../../components/TitlePage";
+import "react-lazy-load-image-component/src/effects/opacity.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function ShowPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -139,11 +141,11 @@ function ShowPokemon() {
         <BgDecoration data={pokemon.id} />
         <div className="flex items-center gap-5">
           <div className="bg-th-blue-dark rounded-full w-[75px] h-[75px]">
-            <img
+            <LazyLoadImage
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
               className="rounded-full w-full h-full object-cover"
-              loading="lazy"
               alt=""
+              effect="opacity"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -202,11 +204,11 @@ function ShowPokemon() {
                 {/* images */}
                 <div className="flex flex-col justify-center items-center order-1 md:order-2 md:w-full col-span-3 md:col-span-1">
                   <div className="w-[250px] h-[250px]">
-                    <img
+                    <LazyLoadImage
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
                       alt=""
                       className="object-contain w-full h-full"
-                      loading="lazy"
+                      effect="opacity"
                     />
                   </div>
                 </div>
