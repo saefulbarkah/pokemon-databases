@@ -9,7 +9,7 @@ export const SidebarTitle = () => {
         loading="lazy"
         className="w-[100px]"
       />
-      <p className="text-xl font-bold">Pokémon</p>
+      <p className="text-xl font-bold">Pokémon Database</p>
     </div>
   );
 };
