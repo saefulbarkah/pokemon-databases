@@ -9,6 +9,7 @@ function Home() {
           src={`https://i.pinimg.com/originals/35/ba/a2/35baa23613f80db94564d2fe5c1ecce6.png`}
           alt=""
           className="w-[400px] md:w-[700px] select-none pointer-events-none"
+          loading="lazy"
         />
       </div>
       <TitlePage>Welcome to Pokémon Databases</TitlePage>

@@ -2,16 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
-  const [isRender, setIsRender] = useState(false);
-
-  useEffect(() => {
-    setIsRender(true);
-  }, []);
   return (
     <Link
-      className={`bg-th-blue-dark p-3.5 rounded-lg transition-opacity duration-300 ${
-        isRender ? "opacity-100" : "opacity-0"
-      }`}
+      className={`bg-th-blue-dark p-3.5 rounded-lg transition-opacity duration-300`}
       to={props.name}
     >
       <div className="flex flex-col items-center">

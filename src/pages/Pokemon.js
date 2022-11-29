@@ -1,33 +1,49 @@
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import BgDecoration from "../components/BgDecoration";
-import CardList from "../components/CardList";
+import Card from "../components/Card";
+import CardLoading from "../components/CardLoading";
 import PageSubTitle from "../components/PageSubTitle";
 import Paragraph from "../components/Paragraph";
 import TitlePage from "../components/TitlePage";
 
 function Pokemon() {
   const [pokemon, setPokemon] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pokeid, setPokemonId] = useState();
+  const [limit, setLimit] = useState(10);
+
+  const handleLoadMore = () => {
+    console.log("loaded");
+    setLimit((prevState) => prevState + 10);
+  };
 
   useEffect(() => {
     // fetch api
     const getPokemon = async () => {
       try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+        );
         const data = await response.json();
         setPokemon(data.results);
-        setIsLoading(false);
+        console.log(data.results);
       } catch (error) {
         console.log(error);
       }
     };
     getPokemon();
+  }, [limit]);
+
+  useEffect(() => {
+    setPokemonId(Math.floor(Math.random() * pokemon.length + 1));
   }, []);
 
   return (
     <section>
-      <BgDecoration data={pokemon} />
-      <TitlePage>Pokemon</TitlePage>
+      <BgDecoration data={pokeid} />
+      <div className="mt-5">
+        <TitlePage>Pokemon</TitlePage>
+      </div>
       <Paragraph>
         Pokémon are mysterious creatures filled with many secrets. Some Pokémon
         live alongside humans and some live in the wild in grassy fields, caves,
@@ -36,13 +52,35 @@ function Pokemon() {
         allows them to be carried around.
       </Paragraph>
 
-      <PageSubTitle>
-        <span className="text-th-cream">List </span>
-        Pokemon
-      </PageSubTitle>
+      <div className="mt-5">
+        <PageSubTitle>
+          <span className="text-th-cream">List </span>
+          Pokemon
+        </PageSubTitle>
+      </div>
 
       {/* card */}
-      <CardList items={pokemon} loading={isLoading} />
+      <InfiniteScroll
+        dataLength={pokemon.length}
+        next={handleLoadMore}
+        hasMore={true || false}
+        loader={
+          <div
+            className={`grid grid-cols-2 md:grid-cols-5 gap-5 mt-5 items-stretch`}
+          >
+            <CardLoading />
+          </div>
+        }
+        className="h-[100px]"
+      >
+        <div
+          className={`grid grid-cols-2 md:grid-cols-5 gap-5 mt-5 items-stretch`}
+        >
+          {pokemon.map((data, i) => (
+            <Card key={i} name={data.name} id={i + 1} />
+          ))}
+        </div>
+      </InfiniteScroll>
     </section>
   );
 }

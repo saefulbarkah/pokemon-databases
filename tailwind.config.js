@@ -10,6 +10,8 @@ module.exports = {
         "th-blue": "#439EAC",
         "th-red": "#D82B33",
         "th-blue-dark": "#2C2939",
+        "th-sky-dark": "#252a38",
+        "th-darken": "#1B1A22",
       },
     },
   },
