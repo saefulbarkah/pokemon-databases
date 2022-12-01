@@ -1,10 +1,10 @@
 import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const CardLoading = () => {
+const CardLoading = (props) => {
   return (
     <>
-      {Array(10)
+      {Array(props.count)
         .fill(null)
         .map((item, i) => (
           <SkeletonTheme baseColor="#3a364d" highlightColor="#433e59" key={i}>

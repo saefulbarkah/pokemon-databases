@@ -10,11 +10,11 @@ import TitlePage from "../components/TitlePage";
 function Pokemon() {
   const [pokemon, setPokemon] = useState([]);
   const [pokeid, setPokemonId] = useState();
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12);
 
   const handleLoadMore = () => {
     console.log("loaded");
-    setLimit((prevState) => prevState + 10);
+    setLimit((prevState) => prevState + 12);
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function Pokemon() {
 
   useEffect(() => {
     setPokemonId(Math.floor(Math.random() * pokemon.length + 1));
-  }, []);
+  }, [pokemon.length]);
 
   return (
     <section>
@@ -52,7 +52,7 @@ function Pokemon() {
         allows them to be carried around.
       </Paragraph>
 
-      <div className="mt-5">
+      <div className="mt-[5rem]">
         <PageSubTitle>
           <span className="text-th-cream">List </span>
           Pokemon
@@ -66,15 +66,15 @@ function Pokemon() {
         hasMore={true || false}
         loader={
           <div
-            className={`grid grid-cols-2 md:grid-cols-5 gap-5 mt-5 items-stretch`}
+            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
           >
-            <CardLoading />
+            <CardLoading count={12} />
           </div>
         }
-        className="h-[100px]"
+        className="h-screen "
       >
         <div
-          className={`grid grid-cols-2 md:grid-cols-5 gap-5 mt-5 items-stretch`}
+          className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
         >
           {pokemon.map((data, i) => (
             <Card key={i} name={data.name} id={i + 1} />

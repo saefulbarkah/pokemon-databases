@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import PageSubTitle from "../../components/PageSubTitle";
 import BgDecoration from "../../components/BgDecoration";
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Transition } from "@headlessui/react";
 import Paragraph from "../../components/Paragraph";
 import Border from "../../components/Border";
 import TitlePage from "../../components/TitlePage";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BsFillCaretLeftFill } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 
 function ShowPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -29,7 +31,7 @@ function ShowPokemon() {
     },
     {
       element: "poison",
-      color: "bg-purple-600",
+      color: "bg-purple-800",
       fontColor: "text-white",
     },
     {
@@ -137,13 +139,23 @@ function ShowPokemon() {
   }, [ability]);
   return (
     <>
-      <section>
+      <section className="my-5 flex items-center">
+        <NavLink
+          className="transition-all py-2 text-th-blue border-b-2 border-transparent hover:border-th-blue flex gap-1 items-center"
+          to="/pokemon"
+        >
+          <BsFillCaretLeftFill className="text-[2rem]" />
+          <span className="text-xl">All Pokemon</span>
+        </NavLink>
+      </section>
+
+      <section className="my-5">
         <BgDecoration data={pokemon.id} />
         <div className="flex items-center gap-5">
-          <div className="bg-th-blue-dark rounded-full w-[75px] h-[75px]">
+          <div className="bg-th-blue-dark rounded-full  flex items-center">
             <LazyLoadImage
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-              className="rounded-full w-full h-full object-cover"
+              className="rounded-full w-[90px] h-[90px] object-cover bg-center"
               alt=""
               effect="opacity"
             />
@@ -159,13 +171,13 @@ function ShowPokemon() {
         <div className="mt-[5rem]">
           <TitlePage>Information</TitlePage>
         </div>
-        <div className="my-[3rem] md:mx-[10rem]">
+        <div className="my-[3rem] lg:mx-[10rem]">
           <PageSubTitle>
             <span className="text-th-cream">Pokemon </span>Profile
           </PageSubTitle>
           <div className="mt-5">
-            <div className="bg-th-blue-dark/60 p-5 rounded-lg w-full shadow-md">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="bg-th-blue-dark/80 p-5  w-full shadow-md border-l-4 border-th-blue">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {/* details */}
                 <div className="flex flex-col order-2 md:order-1 md:w-full col-span-3 md:col-span-1">
                   <div className="flex flex-col text-lg leading-3 my-2">
@@ -179,16 +191,19 @@ function ShowPokemon() {
                   </div>
                   <div className="flex flex-col text-lg leading-3 my-2">
                     <p className="font-light text-sm">Weight</p>
-                    <p className="font-bold text-xl">{pokemon.weight}</p>
+                    <p className="font-bold text-xl">
+                      {pokemon.weight}
+                      <span className="font-light text-sm"> lbs.</span>
+                    </p>
                   </div>
                   <div className="flex flex-col text-lg my-2 gap-2">
                     <p className="font-light text-sm">Type</p>
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-3 md:grid-cols-2 gap-2 text-center items-stretch">
                       {elementColor.map((data) =>
                         type.map((i) =>
                           data.element === i["type"].name ? (
                             <p
-                              className={`px-3 rounded-lg capitalize ${
+                              className={`rounded-lg capitalize  ${
                                 data.element === i["type"].name && data.color
                               } ${data.fontColor}`}
                             >
@@ -203,11 +218,11 @@ function ShowPokemon() {
 
                 {/* images */}
                 <div className="flex flex-col justify-center items-center order-1 md:order-2 md:w-full col-span-3 md:col-span-1">
-                  <div className="w-[250px] h-[250px]">
+                  <div className="w-[200px] h-[200px] flex justify-center relative">
                     <LazyLoadImage
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
                       alt=""
-                      className="object-contain w-full h-full"
+                      className="object-contain w-full h-full absolute inset-0"
                       effect="opacity"
                     />
                   </div>
@@ -234,13 +249,11 @@ function ShowPokemon() {
 
       {/* ability */}
       <section>
-        <div className="my-5">
-          <Border />
-        </div>
+        <Border />
         <div className="my-2">
           <TitlePage>Ability</TitlePage>
         </div>
-        <div className="my-[3rem] md:mx-[10rem]">
+        <div className="my-[3rem] lg:mx-[10rem]">
           {/* abiilites */}
           <PageSubTitle>
             <span className="text-th-cream">List </span>Abilities
@@ -248,37 +261,61 @@ function ShowPokemon() {
           {ability.map((item, i) => (
             <div className="mt-5" key={i}>
               <Disclosure>
-                <Disclosure.Button className="bg-th-sky-dark/75 w-full text-start font-bold text-md p-3">
-                  {item["ability"].name}
-                </Disclosure.Button>
-                {abilityEffect.map((data, index) =>
-                  data.name === item["ability"].name
-                    ? data.effect_entries.map((language, no) =>
-                        language.language["name"] === "en" ? (
-                          <>
-                            <Disclosure.Panel
-                              className="bg-th-blue-dark p-5"
-                              key={index}
-                            >
-                              <div className="bg-th-darken p-5">
-                                <h5 className="font-bold text-2xl capitalize text-th-blue">
-                                  Effect
-                                </h5>
-                                <Paragraph>{language.effect}</Paragraph>
-                              </div>
-                            </Disclosure.Panel>
-                            <Disclosure.Panel className="bg-th-blue-dark p-5">
-                              <div className="bg-th-darken p-5">
-                                <h5 className="font-bold text-2xl capitalize text-th-cream">
-                                  Short Effect
-                                </h5>
-                                <Paragraph>{language.short_effect}</Paragraph>
-                              </div>
-                            </Disclosure.Panel>
-                          </>
-                        ) : null
-                      )
-                    : ""
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className="bg-th-sky-dark/75 w-full text-start font-bold p-3">
+                      <div className="flex items-center gap-2">
+                        <IoIosArrowDown
+                          className={`transition-all duration-300 text-xl ${
+                            open ? "rotate-180" : "rotate-0"
+                          }`}
+                        />
+                        <span className="text-xl">{item["ability"].name}</span>
+                      </div>
+                    </Disclosure.Button>
+                    <div className="overflow-hidden">
+                      <Transition
+                        enter="transition-all duration-300"
+                        enterFrom="-translate-y-full"
+                        enterTo="translate-y-0"
+                        leave="transition-all duration-300"
+                        leaveFrom="translate-y-0"
+                        leaveTo="-translate-y-full"
+                      >
+                        {abilityEffect.map((data, index) =>
+                          data.name === item["ability"].name
+                            ? data.effect_entries.map((language, no) =>
+                                language.language["name"] === "en" ? (
+                                  <>
+                                    <Disclosure.Panel
+                                      className="bg-th-blue-dark p-5"
+                                      key={index}
+                                    >
+                                      <div className="bg-th-darken p-5">
+                                        <h5 className="font-bold text-2xl capitalize text-th-blue">
+                                          Effect
+                                        </h5>
+                                        <Paragraph>{language.effect}</Paragraph>
+                                      </div>
+                                    </Disclosure.Panel>
+                                    <Disclosure.Panel className="bg-th-blue-dark p-5">
+                                      <div className="bg-th-darken p-5">
+                                        <h5 className="font-bold text-2xl capitalize text-th-cream">
+                                          Short Effect
+                                        </h5>
+                                        <Paragraph>
+                                          {language.short_effect}
+                                        </Paragraph>
+                                      </div>
+                                    </Disclosure.Panel>
+                                  </>
+                                ) : null
+                              )
+                            : ""
+                        )}
+                      </Transition>
+                    </div>
+                  </>
                 )}
               </Disclosure>
             </div>

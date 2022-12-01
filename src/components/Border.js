@@ -1,7 +1,7 @@
 import React from "react";
 
 const Border = () => {
-  return <div className="border-[1px] border-white/50 w-full"></div>;
+  return <div className="w-full h-[1px] bg-white/50"></div>;
 };
 
 export default Border;
