@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import PageSubTitle from "../../components/PageSubTitle";
 import BgDecoration from "../../components/BgDecoration";
@@ -100,6 +100,20 @@ function ShowPokemon() {
     },
   ];
 
+  function FindNumber(props) {
+    let str = `${props.text}`;
+    const regex = /-?\d*(\.\d+)?.([%\d×])/g;
+    const output = str.replace(
+      regex,
+      (number) => `<strong style="color: ${props.hexColor}">${number}</strong>`
+    );
+    return (
+      <div>
+        <span dangerouslySetInnerHTML={{ __html: output }}></span>
+      </div>
+    );
+  }
+
   useEffect(() => {
     async function showPoke() {
       try {
@@ -177,7 +191,7 @@ function ShowPokemon() {
             <span className="text-th-cream">Pokemon </span>Profile
           </PageSubTitle>
           <div className="mt-5">
-            <div className="bg-th-blue-dark/80 p-5  w-full shadow-md border-l-4 border-th-cream">
+            <div className="bg-th-blue-dark/80 p-5 shadow-md">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {/* details */}
                 <div className="flex flex-col order-2 md:order-1 md:w-full col-span-3 md:col-span-1">
@@ -265,25 +279,31 @@ function ShowPokemon() {
           </PageSubTitle>
           {ability.map((item, i) => (
             <div className="mt-5" key={i}>
-              <Dropdown title="TEST">
+              <Dropdown title={item["ability"].name.split("-").join(" ")}>
                 {abilityEffect.map((data, index) =>
                   data.name === item["ability"].name
                     ? data.effect_entries.map((ability, no) =>
                         ability.language["name"] === "en" ? (
-                          <>
+                          <React.Fragment key={no}>
                             <DropdownItem
-                              key={no}
                               title="Effect"
                               className="text-th-blue"
-                              description={ability.effect}
-                            />
+                            >
+                              <FindNumber
+                                text={ability.effect}
+                                hexColor="#377DCB"
+                              />
+                            </DropdownItem>
                             <DropdownItem
-                              key={no}
                               title="Short Effect"
                               className="text-th-cream"
-                              description={ability.short_effect}
-                            />
-                          </>
+                            >
+                              <FindNumber
+                                text={ability.short_effect}
+                                hexColor="#377DCB"
+                              />
+                            </DropdownItem>
+                          </React.Fragment>
                         ) : null
                       )
                     : ""

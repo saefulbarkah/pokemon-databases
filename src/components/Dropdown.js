@@ -14,7 +14,7 @@ const Dropdown = ({ children, title }) => {
                   open ? "rotate-180" : "rotate-0"
                 }`}
               />
-              <span className="text-xl">{title}</span>
+              <span className="text-xl capitalize">{title}</span>
             </div>
           </Disclosure.Button>
           <div className="overflow-hidden">
