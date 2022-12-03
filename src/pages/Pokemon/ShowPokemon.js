@@ -262,7 +262,8 @@ function ShowPokemon() {
         <div className="my-[3rem] lg:mx-[10rem]">
           {/* abiilites */}
           <PageSubTitle>
-            <span className="text-th-cream">List </span>Abilities
+            <span className="text-th-cream capitalize">ability </span>{" "}
+            <span className="capitalize">list</span>
           </PageSubTitle>
           {ability.map((item, i) => (
             <div className="mt-5" key={i}>
