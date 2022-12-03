@@ -221,11 +221,11 @@ function ShowPokemon() {
 
                 {/* images */}
                 <div className="flex flex-col justify-center items-center order-1 md:order-2 md:w-full col-span-3 md:col-span-1">
-                  <div className="w-[200px] h-[200px] flex justify-center relative">
+                  <div className="w-[200px] h-[200px] flex justify-center">
                     <LazyLoadImage
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
                       alt=""
-                      className="object-contain w-full h-full absolute inset-0"
+                      className="object-contain w-full h-full bg-center"
                       effect="opacity"
                     />
                   </div>
