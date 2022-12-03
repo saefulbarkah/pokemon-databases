@@ -12,6 +12,7 @@ module.exports = {
         "th-blue-dark": "#2C2939",
         "th-sky-dark": "#252a38",
         "th-darken": "#1B1A22",
+        "th-sky": "#377DCB",
       },
     },
   },

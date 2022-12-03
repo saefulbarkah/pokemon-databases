@@ -9,6 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import Dropdown from "../../components/Dropdown";
 import DropdownItem from "../../components/DropdownItem";
+import ChangeColorNumber from "../../components/ChangeColorNumber";
 
 function ShowPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -99,20 +100,6 @@ function ShowPokemon() {
       fontColor: "text-white",
     },
   ];
-
-  function FindNumber(props) {
-    let str = `${props.text}`;
-    const regex = /-?\d*(\.\d+)?.([%\d×])/g;
-    const output = str.replace(
-      regex,
-      (number) => `<strong style="color: ${props.hexColor}">${number}</strong>`
-    );
-    return (
-      <div>
-        <span dangerouslySetInnerHTML={{ __html: output }}></span>
-      </div>
-    );
-  }
 
   useEffect(() => {
     async function showPoke() {
@@ -289,7 +276,7 @@ function ShowPokemon() {
                               title="Effect"
                               className="text-th-blue"
                             >
-                              <FindNumber
+                              <ChangeColorNumber
                                 text={ability.effect}
                                 hexColor="#377DCB"
                               />
@@ -298,10 +285,7 @@ function ShowPokemon() {
                               title="Short Effect"
                               className="text-th-cream"
                             >
-                              <FindNumber
-                                text={ability.short_effect}
-                                hexColor="#377DCB"
-                              />
+                              <ChangeColorNumber text={ability.short_effect} />
                             </DropdownItem>
                           </React.Fragment>
                         ) : null
