@@ -5,7 +5,9 @@ const ChangeColorNumber = (props) => {
   let str = `${props.text}`;
   const regex = /([0-9]+.)/g;
   return reactStringReplace(str, regex, (match, i) => (
-    <strong className="text-th-sky">{match}</strong>
+    <strong className="text-th-sky" key={i}>
+      {match}
+    </strong>
   ));
 };
 
