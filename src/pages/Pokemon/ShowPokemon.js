@@ -10,6 +10,8 @@ import "react-lazy-load-image-component/src/effects/opacity.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
+import Dropdown from "../../components/Dropdown";
+import DropdownItem from "../../components/DropdownItem";
 
 function ShowPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -260,64 +262,28 @@ function ShowPokemon() {
           </PageSubTitle>
           {ability.map((item, i) => (
             <div className="mt-5" key={i}>
-              <Disclosure>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="bg-th-sky-dark/75 w-full text-start font-bold p-3">
-                      <div className="flex items-center gap-2">
-                        <IoIosArrowDown
-                          className={`transition-all duration-300 text-xl ${
-                            open ? "rotate-180" : "rotate-0"
-                          }`}
-                        />
-                        <span className="text-xl">{item["ability"].name}</span>
-                      </div>
-                    </Disclosure.Button>
-                    <div className="overflow-hidden">
-                      <Transition
-                        enter="transition-all duration-300"
-                        enterFrom="-translate-y-full"
-                        enterTo="translate-y-0"
-                        leave="transition-all duration-300"
-                        leaveFrom="translate-y-0"
-                        leaveTo="-translate-y-full"
-                      >
-                        {abilityEffect.map((data, index) =>
-                          data.name === item["ability"].name
-                            ? data.effect_entries.map((language, no) =>
-                                language.language["name"] === "en" ? (
-                                  <>
-                                    <Disclosure.Panel
-                                      className="bg-th-blue-dark p-5"
-                                      key={index}
-                                    >
-                                      <div className="bg-th-darken p-5">
-                                        <h5 className="font-bold text-2xl capitalize text-th-blue">
-                                          Effect
-                                        </h5>
-                                        <Paragraph>{language.effect}</Paragraph>
-                                      </div>
-                                    </Disclosure.Panel>
-                                    <Disclosure.Panel className="bg-th-blue-dark p-5">
-                                      <div className="bg-th-darken p-5">
-                                        <h5 className="font-bold text-2xl capitalize text-th-cream">
-                                          Short Effect
-                                        </h5>
-                                        <Paragraph>
-                                          {language.short_effect}
-                                        </Paragraph>
-                                      </div>
-                                    </Disclosure.Panel>
-                                  </>
-                                ) : null
-                              )
-                            : ""
-                        )}
-                      </Transition>
-                    </div>
-                  </>
+              <Dropdown title="TEST">
+                {abilityEffect.map((data, index) =>
+                  data.name === item["ability"].name
+                    ? data.effect_entries.map((ability, no) =>
+                        ability.language["name"] === "en" ? (
+                          <>
+                            <DropdownItem
+                              title="Effect"
+                              className="text-th-blue"
+                              description={ability.effect}
+                            />
+                            <DropdownItem
+                              title="Short Effect"
+                              className="text-th-cream"
+                              description={ability.short_effect}
+                            />
+                          </>
+                        ) : null
+                      )
+                    : ""
                 )}
-              </Disclosure>
+              </Dropdown>
             </div>
           ))}
         </div>
