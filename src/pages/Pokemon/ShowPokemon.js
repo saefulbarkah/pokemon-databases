@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import PageSubTitle from "../../components/PageSubTitle";
 import BgDecoration from "../../components/BgDecoration";
-import { Disclosure, Transition } from "@headlessui/react";
-import Paragraph from "../../components/Paragraph";
 import Border from "../../components/Border";
 import TitlePage from "../../components/TitlePage";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BsFillCaretLeftFill } from "react-icons/bs";
-import { IoIosArrowDown } from "react-icons/io";
 import Dropdown from "../../components/Dropdown";
 import DropdownItem from "../../components/DropdownItem";
 
@@ -104,7 +101,7 @@ function ShowPokemon() {
   ];
 
   useEffect(() => {
-    const showPoke = async () => {
+    async function showPoke() {
       try {
         const response = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${name}`
@@ -119,8 +116,9 @@ function ShowPokemon() {
       } catch (error) {
         console.log(error);
       }
-    };
+    }
     showPoke();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -138,6 +136,7 @@ function ShowPokemon() {
     ability.forEach((element) => {
       showAbilities(element["ability"].name);
     });
+    // eslint-disable-next-line
   }, [ability]);
   return (
     <>
@@ -178,7 +177,7 @@ function ShowPokemon() {
             <span className="text-th-cream">Pokemon </span>Profile
           </PageSubTitle>
           <div className="mt-5">
-            <div className="bg-th-blue-dark/80 p-5  w-full shadow-md border-l-4 border-th-blue">
+            <div className="bg-th-blue-dark/80 p-5  w-full shadow-md border-l-4 border-th-cream">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {/* details */}
                 <div className="flex flex-col order-2 md:order-1 md:w-full col-span-3 md:col-span-1">
@@ -201,13 +200,14 @@ function ShowPokemon() {
                   <div className="flex flex-col text-lg my-2 gap-2">
                     <p className="font-light text-sm">Type</p>
                     <div className="grid grid-cols-3 md:grid-cols-2 gap-2 text-center items-stretch">
-                      {elementColor.map((data) =>
+                      {elementColor.map((data, key) =>
                         type.map((i) =>
                           data.element === i["type"].name ? (
                             <p
                               className={`rounded-lg capitalize  ${
                                 data.element === i["type"].name && data.color
                               } ${data.fontColor}`}
+                              key={key}
                             >
                               {i["type"].name}
                             </p>
@@ -234,8 +234,11 @@ function ShowPokemon() {
                   <div className="flex flex-col text-lg leading-3 my-2 col-span-2">
                     <p className="font-bold text-2xl  capitalize">Base Stats</p>
                   </div>
-                  {stat.map((item) => (
-                    <div className="flex flex-col text-lg leading-3 my-2">
+                  {stat.map((item, key) => (
+                    <div
+                      className="flex flex-col text-lg leading-3 my-2"
+                      key={key}
+                    >
                       <p className="font-light text-sm capitalize">
                         {item["stat"].name}
                       </p>
@@ -269,11 +272,13 @@ function ShowPokemon() {
                         ability.language["name"] === "en" ? (
                           <>
                             <DropdownItem
+                              key={no}
                               title="Effect"
                               className="text-th-blue"
                               description={ability.effect}
                             />
                             <DropdownItem
+                              key={no}
                               title="Short Effect"
                               className="text-th-cream"
                               description={ability.short_effect}
