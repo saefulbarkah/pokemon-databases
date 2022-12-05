@@ -36,11 +36,12 @@ function Pokemon() {
 
   useEffect(() => {
     setPokemonId(Math.floor(Math.random() * pokemon.length + 1));
-  }, [pokemon.length]);
-
+  }, []);
   return (
     <section>
-      <BgDecoration data={pokeid} />
+      <BgDecoration
+        path={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokeid}.svg`}
+      />
       <div className="mt-5">
         <TitlePage>Pokemon</TitlePage>
       </div>
@@ -77,7 +78,14 @@ function Pokemon() {
           className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
         >
           {pokemon.map((data, i) => (
-            <Card key={i} name={data.name} id={i + 1} />
+            <Card
+              key={i}
+              name={data.name}
+              id={i + 1}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+                i + 1
+              }.svg`}
+            />
           ))}
         </div>
       </InfiniteScroll>
