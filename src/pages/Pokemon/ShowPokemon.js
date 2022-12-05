@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import PageSubTitle from "../../components/PageSubTitle";
 import BgDecoration from "../../components/BgDecoration";
@@ -280,13 +280,18 @@ function ShowPokemon() {
                               <ChangeColorNumber
                                 text={ability.effect}
                                 hexColor="#377DCB"
+                                regex={/([0-9]+.)/g}
                               />
                             </DropdownItem>
                             <DropdownItem
                               title="Short Effect"
                               className="text-th-cream"
                             >
-                              <ChangeColorNumber text={ability.short_effect} />
+                              <ChangeColorNumber
+                                text={ability.short_effect}
+                                hexColor="#377DCB"
+                                regex={/([0-9]+.)/g}
+                              />
                             </DropdownItem>
                           </React.Fragment>
                         ) : null
