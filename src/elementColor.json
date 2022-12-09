@@ -1,0 +1,82 @@
+[
+  {
+    "element": "fire",
+    "color": "bg-red-600",
+    "font-color": "text-white"
+  },
+  {
+    "element": "grass",
+    "color": "bg-green-600",
+    "font-color": "text-white"
+  },
+  {
+    "element": "poison",
+    "color": "bg-purple-800",
+    "font-color": "text-white"
+  },
+  {
+    "element": "electric",
+    "color": "bg-yellow-600",
+    "font-color": "text-white"
+  },
+  {
+    "element": "fairy",
+    "color": "bg-pink-700",
+    "font-color": "text-white"
+  },
+  {
+    "element": "water",
+    "color": "bg-blue-700",
+    "font-color": "text-white"
+  },
+  {
+    "element": "ice",
+    "color": "bg-sky-500",
+    "font-color": "text-white"
+  },
+  {
+    "element": "fighting",
+    "color": "bg-orange-700",
+    "font-color": "text-white"
+  },
+  {
+    "element": "flying",
+    "color": "bg-gray-500",
+    "font-color": "text-white"
+  },
+  {
+    "element": "bug",
+    "color": "bg-green-800",
+    "font-color": "text-white"
+  },
+  {
+    "element": "dark",
+    "color": "bg-slate-800",
+    "font-color": "text-white"
+  },
+  {
+    "element": "normal",
+    "color": "bg-purple-500",
+    "font-color": "text-white"
+  },
+  {
+    "element": "ghost",
+    "color": "bg-blue-700",
+    "font-color": "text-white"
+  },
+  {
+    "element": "ground",
+    "color": "bg-orange-700",
+    "font-color": "text-white"
+  },
+  {
+    "element": "rock",
+    "color": "bg-orange-900",
+    "font-color": "text-white"
+  },
+  {
+    "element": "steel",
+    "color": "bg-lime-700",
+    "font-color": "text-white"
+  }
+]

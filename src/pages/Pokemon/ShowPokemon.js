@@ -10,6 +10,7 @@ import { BsFillCaretLeftFill } from "react-icons/bs";
 import Dropdown from "../../components/Dropdown";
 import DropdownItem from "../../components/DropdownItem";
 import ChangeColorNumber from "../../components/ChangeColorNumber";
+import elementColor from "../../elementColor.json";
 
 function ShowPokemon() {
   const [pokemon, setPokemon] = useState([]);
@@ -18,88 +19,6 @@ function ShowPokemon() {
   const [stat, setStat] = useState([]);
   const [abilityEffect, setAbilityEffect] = useState([]);
   const { name } = useParams();
-  const elementColor = [
-    {
-      element: "fire",
-      color: "bg-red-600",
-      fontColor: "text-white",
-    },
-    {
-      element: "grass",
-      color: "bg-green-600",
-      fontColor: "text-white",
-    },
-    {
-      element: "poison",
-      color: "bg-purple-800",
-      fontColor: "text-white",
-    },
-    {
-      element: "electric",
-      color: "bg-yellow-600",
-      fontColor: "text-white",
-    },
-    {
-      element: "fairy",
-      color: "bg-pink-700",
-      fontColor: "text-white",
-    },
-    {
-      element: "water",
-      color: "bg-blue-700",
-      fontColor: "text-white",
-    },
-    {
-      element: "ice",
-      color: "bg-sky-500",
-      fontColor: "text-white",
-    },
-    {
-      element: "fighting",
-      color: "bg-orange-700",
-      fontColor: "text-white",
-    },
-    {
-      element: "flying",
-      color: "bg-gray-500",
-      fontColor: "text-white",
-    },
-    {
-      element: "bug",
-      color: "bg-green-800",
-      fontColor: "text-white",
-    },
-    {
-      element: "dark",
-      color: "bg-slate-800",
-      fontColor: "text-white",
-    },
-    {
-      element: "normal",
-      color: "bg-purple-500",
-      fontColor: "text-white",
-    },
-    {
-      element: "ghost",
-      color: "bg-blue-700",
-      fontColor: "text-white",
-    },
-    {
-      element: "ground",
-      color: "bg-orange-700",
-      fontColor: "text-white",
-    },
-    {
-      element: "rock",
-      color: "bg-orange-900",
-      fontColor: "text-white",
-    },
-    {
-      element: "steel",
-      color: "bg-lime-700",
-      fontColor: "text-white",
-    },
-  ];
 
   useEffect(() => {
     async function showPoke() {
