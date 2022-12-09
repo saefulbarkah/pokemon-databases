@@ -13,6 +13,7 @@ module.exports = {
         "th-sky-dark": "#252a38",
         "th-darken": "#1B1A22",
         "th-sky": "#377DCB",
+        "th-blue-hover": "#39485F",
       },
     },
   },

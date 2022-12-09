@@ -6,7 +6,7 @@ import "react-lazy-load-image-component/src/effects/opacity.css";
 const Card = (props) => {
   return (
     <Link
-      className={`bg-th-blue-dark p-3.5 rounded-lg transition-opacity duration-300`}
+      className={`bg-th-blue-dark p-3.5 rounded-lg transition-opacity duration-300 hover:bg-th-blue-hover`}
       to={props.name}
     >
       <div className="flex flex-col items-center">
