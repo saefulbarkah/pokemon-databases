@@ -17,7 +17,7 @@ function Pokemon() {
   const getPokemon = useMemo(() => {
     if (!searchPoke) return allPokemon;
     return allPokemon.filter((item) => {
-      return item.name.includes(searchPoke);
+      return item.name.includes(searchPoke.toLowerCase());
     });
   }, [allPokemon, searchPoke]);
 
@@ -104,7 +104,7 @@ function Pokemon() {
           </div>
         ) : (
           <div className="flex justify-center my-[2rem] md:my-[5rem]">
-            <p className="text-2xl">Not Found....</p>
+            <p className="text-2xl capitalize">Sorry! no result found</p>
           </div>
         )}
       </>
