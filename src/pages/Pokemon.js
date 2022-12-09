@@ -5,17 +5,21 @@ import CardLoading from "../components/CardLoading";
 import PageSubTitle from "../components/PageSubTitle";
 import Paragraph from "../components/Paragraph";
 import TitlePage from "../components/TitlePage";
-import { BiSearchAlt2 } from "react-icons/bi";
+import Search from "../components/Search";
+import { useMemo } from "react";
 
 function Pokemon() {
   const [allPokemon, setAllPokemon] = useState([]);
   const [pokeid, setPokemonId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchPoke, setSearchPoke] = useState("");
 
-  const handleSearchname = (event) => {
-    const namePokemon = event.target.value;
-    console.log(namePokemon);
-  };
+  const getPokemon = useMemo(() => {
+    if (!searchPoke) return allPokemon;
+    return allPokemon.filter((item) => {
+      return item.name.includes(searchPoke);
+    });
+  }, [allPokemon, searchPoke]);
 
   useEffect(() => {
     // fetch api
@@ -42,6 +46,7 @@ function Pokemon() {
     randomizeNumber();
     // eslint-disable-next-line
   }, [allPokemon]);
+
   return (
     <section>
       <BgDecoration
@@ -66,32 +71,27 @@ function Pokemon() {
               Pokemon
             </PageSubTitle>
           </div>
-          <div className="flex shadow-lg my-4 md:my-0">
-            <div className="bg-th-red flex items-center p-2 rounded-l-lg absolute z-[1]">
-              <BiSearchAlt2 className="font-bold text-2xl" />
-            </div>
-            <input
-              type="text"
-              className="rounded-lg w-full py-2 pl-[3rem] pr-[10px] outline-none bg-th-sky-dark/50
-              focus:outline focus:outline-th-red backdrop-blur-sm transition-all outline"
-              name="name_pokemon"
-              placeholder="Search Pokemon"
-              id=""
-              onChange={handleSearchname}
-            />
-          </div>
+          <Search
+            placeHolder="Search pokemon...."
+            className="my-4 md:my-0"
+            onChange={(e) => setSearchPoke(e.target.value)}
+          />
         </div>
       </div>
 
       {/* card */}
       <>
-        <div
-          className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
-        >
-          {isLoading ? (
+        {isLoading ? (
+          <div
+            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
+          >
             <CardLoading count={12} />
-          ) : (
-            allPokemon.map((data, i) => (
+          </div>
+        ) : getPokemon.length !== 0 ? (
+          <div
+            className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 items-stretch`}
+          >
+            {getPokemon.map((data, i) => (
               <Card
                 key={i}
                 name={data.name}
@@ -100,9 +100,13 @@ function Pokemon() {
                   i + 1
                 }.svg`}
               />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex justify-center my-[2rem] md:my-[5rem]">
+            <p className="text-2xl">Not Found....</p>
+          </div>
+        )}
       </>
     </section>
   );
