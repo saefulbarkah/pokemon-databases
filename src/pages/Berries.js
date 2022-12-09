@@ -46,7 +46,7 @@ function Berries() {
     <section>
       <BgDecoration path={`/assets/berry.png`} />
       <div className="mt-5">
-        <TitlePage>Berries</TitlePage>
+        <TitlePage>Berry</TitlePage>
         <div className="my-2">
           <Paragraph>
             Berries were introduced in Generation II to take advantage of the
