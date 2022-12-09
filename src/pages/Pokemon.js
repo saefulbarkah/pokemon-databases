@@ -17,10 +17,19 @@ function Pokemon() {
 
   const getPokemon = useMemo(() => {
     if (!searchPoke) return allPokemon;
-    return allPokemon.filter((item) => {
+    return allPokemon.filter((item, i) => {
       return item.name.includes(searchPoke.toLowerCase());
     });
   }, [allPokemon, searchPoke]);
+
+  const newObj = (obj) => {
+    return obj.map((data, i) => {
+      setAllPokemon((prevState) => [
+        ...prevState,
+        { id: i + 1, name: data.name },
+      ]);
+    });
+  };
 
   useEffect(() => {
     // fetch api
@@ -30,7 +39,7 @@ function Pokemon() {
           `https://pokeapi.co/api/v2/pokemon?limit=50`
         );
         const data = await response.json();
-        setAllPokemon(data.results);
+        newObj(data.results);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -99,9 +108,7 @@ function Pokemon() {
                   key={i}
                   name={data.name}
                   id={i + 1}
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-                    i + 1
-                  }.svg`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
                 />
               ))}
             </div>
