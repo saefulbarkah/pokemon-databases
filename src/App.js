@@ -14,8 +14,9 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="pokemon" element={<Pokemon />} />
-          <Route path="berries" element={<Berries />} />
+          <Route path="berry" element={<Berries />} />
           <Route path="pokemon/:name" element={<ShowPokemon />} />
+          <Route path="*" element={<p>Page Not Found!</p>} />
         </Routes>
       </Layouts>
     </SidebarProvider>
