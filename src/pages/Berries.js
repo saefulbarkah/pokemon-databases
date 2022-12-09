@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import BgDecoration from "../components/BgDecoration";
 import Card from "../components/Card";
 import CardLoading from "../components/CardLoading";
 import PageSubTitle from "../components/PageSubTitle";
@@ -26,6 +27,11 @@ function Berries() {
   }, []);
   return (
     <section>
+      <BgDecoration
+        path={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+          Math.floor(Math.random() * berries.length) + 1
+        }.svg`}
+      />
       <div className="mt-5">
         <TitlePage>Berries</TitlePage>
         <div className="my-2">

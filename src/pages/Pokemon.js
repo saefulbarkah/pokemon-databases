@@ -22,7 +22,7 @@ function Pokemon() {
     const getPokemon = async () => {
       try {
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=250&offset=0`
+          `https://pokeapi.co/api/v2/pokemon?limit=50`
         );
         const data = await response.json();
         setAllPokemon(data.results);
@@ -37,27 +37,11 @@ function Pokemon() {
 
   useEffect(() => {
     const randomizeNumber = () => {
-      setPokemonId(Math.floor(Math.random() * 200) + 1);
+      setPokemonId(Math.floor(Math.random() * allPokemon.length) + 1);
     };
     randomizeNumber();
     // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    const getAllPokemon = async () => {
-      try {
-        const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon/?limit=1154"
-        );
-        const data = await response.json();
-        setAllPokemon(data.results);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAllPokemon();
-    // eslint-disable-next-line
-  }, []);
+  }, [allPokemon]);
   return (
     <section>
       <BgDecoration
