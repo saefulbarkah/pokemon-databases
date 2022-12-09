@@ -7,14 +7,12 @@ import PageSubTitle from "../components/PageSubTitle";
 import Paragraph from "../components/Paragraph";
 import Search from "../components/Search";
 import TitlePage from "../components/TitlePage";
-import { FcSearch } from "react-icons/fc";
 import Title from "../components/Title";
 
 function Berries() {
   const [berries, setBerries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchBerry, setSearchBerry] = useState("");
-  const [berryId, setBerryId] = useState("");
 
   const getBerries = useMemo(() => {
     if (!searchBerry) return berries;
@@ -22,10 +20,6 @@ function Berries() {
       return item.name.includes(searchBerry.toLowerCase());
     });
   }, [berries, searchBerry]);
-
-  const randomize = (data) => {
-    setBerryId(Math.floor(Math.random() * data.length));
-  };
 
   useEffect(() => {
     async function getBerries() {
@@ -41,7 +35,6 @@ function Berries() {
       }
     }
     getBerries();
-    randomize(berries);
   }, []);
   return (
     <>

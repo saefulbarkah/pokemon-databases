@@ -10,7 +10,7 @@ const Search = (props) => {
       <input
         type="text"
         className="rounded-lg w-full py-2 pl-[3rem] pr-[10px] outline-none bg-th-sky-dark/50
-			focus:outline focus:outline-th-red backdrop-blur-sm transition-all outline"
+			focus:ring focus:ring-th-red backdrop-blur-sm transition-all"
         name="name_pokemon"
         placeholder={props.placeHolder}
         id=""

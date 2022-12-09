@@ -24,7 +24,7 @@ function Pokemon() {
 
   const newObj = (obj) => {
     return obj.map((data, i) => {
-      setAllPokemon((prevState) => [
+      return setAllPokemon((prevState) => [
         ...prevState,
         { id: i + 1, name: data.name },
       ]);
